@@ -12,11 +12,16 @@ afterAll(async () => {
   await db.drop();
 });
 //TODO add tests
-// describe('Testing the cat router', () => {
-//   it('should read from messages data', async () => {
-//     const response = await request.get('/message');
+describe('Testing the cat router', () => {
+  it('should read from messages data', async () => {
+    const response = await request.post('/cat').send({
+      name: 'Chloe',
+      breed: 'tabby',
+      age: '11',
+      color: 'orange',
+    });
 
-//     expect(response.status).toEqual(200);
-//     expect(response.body.count).toBeDefined();
-//     expect(response.body.results).toBeDefined();
-//   });
+    expect(response.status).toEqual(201);
+    expect(response.body.name).toEqual('Chloe');
+  });
+});
